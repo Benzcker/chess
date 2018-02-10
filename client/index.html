@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Benz Chess</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="/client/css/magic-check.css" rel="stylesheet">
+        <link href="/client/css/style.css" rel="stylesheet">
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
+        <script src="/client/js/main.js" type="module"></script>
+    </head>
+    <body>
+
+        <div id="menu">
+            <h1 class="chess-header">Chess</h1>
+            <table><tbody>
+                <tr>
+                    <!-- LINKE SPALTE -->
+                    <td>
+                        <div class="menu-wrapper">
+                            <h1>Create Game</h1>
+                            <div class="menu-content-wrapper">
+                                Name: 
+                                <input id="hostName" type="text" name="Name" value="" placeholder="Wer bist du?" maxlength="20">
+                                <br>
+                                <span class="btn-start no-select" onclick="createGame()">CREATE GAME</span><br><br>
+
+
+                                <div class="menu-game-options">
+                                    <form>
+                                        <p>
+                                            <table>
+                                                <tbody>
+                                                    <tr>
+                                                        <td style="width: 50%">
+                                                            <p>Feldgr&ouml;&szlig;e:</p>
+                                                        </td>
+                                                        <td style="width: 50%">
+                                                            <p>Spielerzahl:</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="width: 50%">
+                                                            <input class="magic-radio" type="radio" name="menu-fieldsize" id="menu-fieldsize8" value="8" checked>
+                                                            <label for="menu-fieldsize8">8</label>
+                                                            
+                                                            <input class="magic-radio" type="radio" name="menu-fieldsize" id="menu-fieldsize12" value="12" disabled>
+                                                            <label for="menu-fieldsize12"><span class="disabled">12</span></label>
+                                                            
+                                                            <input class="magic-radio" type="radio" name="menu-fieldsize" id="menu-fieldsize16" value="16" disabled>
+                                                            <label for="menu-fieldsize16"><span class="disabled">16</span></label>
+                                                        </td>
+
+                                                        <td style="width: 50%">
+                                                            <input class="magic-radio" type="radio" name="menu-playercount" id="menu-playercount2" value="2" checked>
+                                                            <label for="menu-playercount2">2</label>
+                                                            
+                                                            <input class="magic-radio" type="radio" name="menu-playercount" id="menu-playercount4" value="4" >
+                                                            <label for="menu-playercount4"><span class="disabled">4</span></label>
+
+                                                            <input class="magic-radio" type="radio" name="menu-playercount" id="menu-playercount8" value="8" disabled>
+                                                            <label for="menu-playercount8"><span class="disabled">8</span></label>
+                                                            
+                                                            <input class="magic-radio" type="radio" name="menu-playercount" id="menu-playercount16" value="16" disabled>
+                                                            <label for="menu-playercount16"><span class="disabled">16</span></label>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            
+
+                                        </p>
+                                        <p>
+                                            <input class="magic-checkbox" type="checkbox" name="blindfolded" id="blindfolded" disabled/>
+                                            <label class="text" for="blindfolded"><span class="disabled">Blindfolded</span></label>
+                                        </p>
+                                    </form>
+                                </div>
+
+
+
+                            </div>
+                        </div>
+                    </td>
+                    <!-- LINKE SPALTE ENDE -->
+                    <!-- RECHTE SPALTE -->
+                    <td>
+                        <div class="menu-wrapper">
+                            <h1>Join Game</h1>
+                            <div class="menu-content-wrapper">
+                                <div id="menu-join-content">
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <!-- RECHTE SPALTE ENDE -->
+                </tr>
+                
+            </tbody></table>
+        </div>
+
+        <div id="game" hidden="true">
+
+            <div id="waitingScreen">
+                <p>Waiting for more players... (<span id="waitingRemaindingPlayers">0</span>)</p>
+            </div>
+
+            <div id="exitScreen" hidden="true">
+                <p>Das Spiel wurde unterbrochen.</p>
+                <p>Grund:</p>
+                <p id="exitScreenReason"></p>
+            </div>
+
+            <div id="screenContainer" hidden="true">
+                <canvas id="screen" width="512px" height="512px"></canvas>
+                
+                <footer class="foot"><a href="https://www.freepik.com/free-photos-vectors/template">Template vector created by Brgfx - Freepik.com</a></footer>  
+            </div>
+
+        </div>
+
+    </body>
+</html>
